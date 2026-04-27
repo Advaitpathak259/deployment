@@ -2,10 +2,13 @@
   "name": "@repo/db",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "keywords": [],
   "author": "",
    "scripts": {
+    "build": "pnpm run db:generate && tsc -p tsconfig.json",
     "db:generate": "prisma generate", 
     "db:migrate": "prisma migrate dev", 
     "db:deploy": "prisma migrate deploy"
@@ -23,6 +26,9 @@
     "pg": "^8.20.0"
   },
      "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
   } 
 }
